@@ -2,12 +2,63 @@ import 'package:flutter/material.dart';
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-void main() => runApp(MarcadorTrucoApp());
+void main() {
+  runApp(MarcadorTrucoApp());
+}
 
 class MarcadorTrucoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: HomePage(), debugShowCheckedModeBanner: false);
+    return MaterialApp(
+      home: SplashScreen(), // Inicia com a splash em Dart
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+// ========================
+// Splash Screen em Dart
+// ========================
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => HomePage()),
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.red,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/logo.png', width: 120),
+            SizedBox(height: 20),
+            Text(
+              'Marcador de Truco',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(height: 20),
+            CircularProgressIndicator(color: Colors.white),
+          ],
+        ),
+      ),
+    );
   }
 }
 
