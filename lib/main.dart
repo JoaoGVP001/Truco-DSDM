@@ -53,24 +53,23 @@ class _HomePageState extends State<HomePage> {
     if (player.points == 12) {
       showDialog(
         context: context,
-        builder:
-            (_) => AlertDialog(
-              title: Text('${player.name} venceu!'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      player.victories++;
-                      teamA.points = 0;
-                      teamB.points = 0;
-                      history.clear();
-                    });
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('OK'),
-                ),
-              ],
+        builder: (_) => AlertDialog(
+          title: Text('${player.name} venceu!'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  player.victories++;
+                  teamA.points = 0;
+                  teamB.points = 0;
+                  history.clear();
+                });
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
             ),
+          ],
+        ),
       );
     }
   }
@@ -87,20 +86,19 @@ class _HomePageState extends State<HomePage> {
     final controller = TextEditingController(text: player.name);
     showDialog(
       context: context,
-      builder:
-          (_) => AlertDialog(
-            title: Text('Alterar nome'),
-            content: TextField(controller: controller),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  setState(() => player.name = controller.text);
-                  Navigator.of(context).pop();
-                },
-                child: Text('Salvar'),
-              ),
-            ],
+      builder: (_) => AlertDialog(
+        title: Text('Alterar nome'),
+        content: TextField(controller: controller),
+        actions: [
+          TextButton(
+            onPressed: () {
+              setState(() => player.name = controller.text);
+              Navigator.of(context).pop();
+            },
+            child: Text('Salvar'),
           ),
+        ],
+      ),
     );
   }
 
@@ -187,6 +185,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red,
         title: Text('Marcador de Truco'),
         actions: [
           IconButton(icon: Icon(Icons.refresh), onPressed: resetPoints),
